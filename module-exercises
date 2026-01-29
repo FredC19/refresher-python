@@ -28,10 +28,37 @@ def user_id_gen_by_user():
 #task-3
 
 def rgb_colour_gen():
-    print (randint(0,255),randint(0,255),randint(0,255))
+    rgb_value = (f"rgb({randint(0,255)},{randint(0,255)},{randint(0,255)})")
+    return rgb_value
 rgb_colour_gen()
 
+#Level 2
+#task-1
 
+def hexa_colour_gen():
+    hexaid = "#"
+    for x in range (6):
+        if randint(0,16) > 10:
+            new_char = (string.digits[randint(1,10)])
+        else:
+            new_char = (string.ascii_lowercase[randint(0,5)])
+        hexaid+= new_char
+    return hexaid
+
+def generate_colours(format_choice,length):
+    final=[]
+    if format_choice == "rgb":
+        for x in range(0,length):
+            final.append(rgb_colour_gen())
+    if format_choice == "hexa":
+        for x in range(0,length):
+            final.append(hexa_colour_gen())
+            print(final)
+    else:
+        print("Invalid input")
+    print(final)
+
+generate_colours("rgb",4)
 
 
     
