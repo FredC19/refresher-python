@@ -1,9 +1,10 @@
 from random import randint
 import string
 
-def random_user_id():
+#task-1
+def random_user_id(length):
     id = ""
-    for x in range (6):
+    for x in range (length):
         if randint(0,36) > 26:
             new_char = (string.digits[randint(1,10)])
         else:
@@ -11,6 +12,26 @@ def random_user_id():
         id+= new_char
     return id
 
-print(random_user_id())
-print(string.ascii_lowercase[1])
+# print(random_user_id(6))
+# print(string.ascii_lowercase[1])
+
+#task-2
+
+def user_id_gen_by_user():
+    length =int(input("How long do you want it?"))
+    ids = int(input("How many times do you want it?"))
+    for x in range(ids):
+        print(random_user_id(length))
+
+# user_id_gen_by_user()
+
+#task-3
+
+def rgb_colour_gen():
+    print (randint(0,255),randint(0,255),randint(0,255))
+rgb_colour_gen()
+
+
+
+
     
