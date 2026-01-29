@@ -1,0 +1,16 @@
+from random import randint
+import string
+
+def random_user_id():
+    id = ""
+    for x in range (6):
+        if randint(0,36) > 26:
+            new_char = (string.digits[randint(1,10)])
+        else:
+            new_char = (string.ascii_lowercase[randint(0,25)])
+        id+= new_char
+    return id
+
+print(random_user_id())
+print(string.ascii_lowercase[1])
+    
