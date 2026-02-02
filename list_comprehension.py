@@ -69,3 +69,11 @@ two_power_of_five = power(2)(5)
 print(two_power_of_five)  # 32
 
 #task-1
+numbers = [-4, -3, -2, -1, 0, 2, 4, 6]
+not_negative = [i for i in numbers if i>= 0]
+print("Task 1:",not_negative)
+
+#task-2
+list_of_lists =[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+ascending_order = [i for i in list_of_lists for i in i]
+print(ascending_order)
