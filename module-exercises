@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choices
 import string
 
 #task-1
@@ -58,7 +58,32 @@ def generate_colours(format_choice,length):
         print("Invalid input")
     print(final)
 
-generate_colours("rgb",4)
+# generate_colours("rgb",4)
+
+#Level 3
+
+list_example=["a","b","c","d","e","f","g","h"]
+
+
+def shuffle_list(items):
+    shuffled_list=[]
+    while items:
+        target_index = randint(0,len(items)-1)
+        target_value = items.pop(target_index)
+        shuffled_list.append(target_value)
+    return shuffled_list
+print(shuffle_list(list_example))
+
+def shuffle_nums():
+    items=[1,2,3,4,5,6,7,8,9,0]
+    shuffled_list=[]
+    while len(items)>3:
+        target_index = randint(0,len(items)-1)
+        target_value = items.pop(target_index)
+        shuffled_list.append(target_value)
+    return shuffled_list
+print(shuffle_nums())
+
 
 
     
