@@ -76,4 +76,23 @@ print("Task 1:",not_negative)
 #task-2
 list_of_lists =[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 ascending_order = [i for i in list_of_lists for i in i]
-print(ascending_order)
+print("Task 2:",ascending_order)
+
+#task-3
+correct_tuple = [(i,1,i, i*i, i**3, i**4, i**5) for i in range(11)]
+print("Task 3:")
+for item in (correct_tuple):
+    print(item)
+
+#more effiecient way:
+#result = [(n, 1, *[n**p for p in range(1, 6)]) for n in range(11)]
+
+#task-4
+countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')], [('Norway', 'Oslo')]]
+correct_countries = [[country.upper(), country[:3].upper(), capital.upper()]
+                    for x in countries
+                    for (country,capital) in x]
+print("Task 4:", correct_countries)
+
+# output:
+# [['FINLAND','FIN', 'HELSINKI'], ['SWEDEN', 'SWE', 'STOCKHOLM'], ['NORWAY', 'NOR', 'OSLO']]
