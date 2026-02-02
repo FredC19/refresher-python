@@ -1,3 +1,4 @@
+import math
 #List comprehension in Python is a compact way of creating a list from a sequence. 
 # It is a short way to create a new list. List comprehension is considerably faster than
 # processing a list using the for loop.
@@ -96,3 +97,28 @@ print("Task 4:", correct_countries)
 
 # output:
 # [['FINLAND','FIN', 'HELSINKI'], ['SWEDEN', 'SWE', 'STOCKHOLM'], ['NORWAY', 'NOR', 'OSLO']]
+
+#task-5
+correct_countries = [{"country":country.upper(), "capital": capital.upper()}
+                    for x in countries
+                    for (country,capital) in x]
+print("Task 5:")
+for item in correct_countries:
+    print(item)
+# output:
+# [{'country': 'FINLAND', 'city': 'HELSINKI'},
+# {'country': 'SWEDEN', 'city': 'STOCKHOLM'},
+# {'country': 'NORWAY', 'city': 'OSLO'}]
+
+#task-6
+names = [[('Asabeneh', 'Yetayeh')], [('David', 'Smith')], [('Donald', 'Trump')], [('Bill', 'Gates')]]
+correct_names = [(names[0]+" "+names[1]) for name_list in names
+                 for names in name_list]
+print("task-6:",correct_names)
+
+# output
+# ['Asabeneh Yetaeyeh', 'David Smith', 'Donald Trump', 'Bill Gates']
+
+#final task
+list_of_results = lambda x: [x, x*x, x**3, math.sqrt(x) ]
+print(list_of_results(9))
