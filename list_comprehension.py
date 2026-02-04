@@ -120,5 +120,10 @@ print("task-6:",correct_names)
 # ['Asabeneh Yetaeyeh', 'David Smith', 'Donald Trump', 'Bill Gates']
 
 #final task
-list_of_results = lambda x: [x, x*x, x**3, math.sqrt(x) ]
+list_of_results = lambda x : [x, x*x, x**3, math.sqrt(x) ]
 print(list_of_results(9))
+
+unclean_data = ['php', 'w3r', 'Python', 'abcd', 'Java', 'aaa']
+name="Fred"
+# print(name[::-1])
+cleaner = lambda x : x if x==x[::-1] else None
