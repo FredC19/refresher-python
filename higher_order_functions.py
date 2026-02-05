@@ -1,5 +1,5 @@
 from functools import reduce
-
+from data import all_countries
 
 def sum_numbers(nums):  # normal function
     return sum(nums)    # a sad function abusing the built-in sum function :<
@@ -193,5 +193,76 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 #Closure is when a nested function has access to the outer functions scope
 #Decorators are higher order functions that take functions as parameters
 
+def upper(list):
+    return list.upper()
+
+countries = map(upper,countries)
 for country in countries:
     print(country)
+    
+numbers = map(lambda x : x*x,numbers)
+for x in numbers:
+    print(x)
+
+names = map(lambda name : name.upper(),names)
+print(list(names))
+
+def contain_land(name):
+    if "land" in name:
+        return False
+    else:
+        return True 
+
+countries = ['Estonia', 'Finland', 'Sweden', 'Denmark', 'Norway', 'Iceland']
+result = filter(contain_land,countries)
+print(list(result))
+
+def long_countries(name):
+    if len(name)==6:
+        return False
+    else:
+        return True
+
+def start_with_e(name):
+    if name[0].upper()=="E":
+        return False
+    else:
+        return True
+    
+result = filter(long_countries,countries)
+print(list(result))
+result = filter(start_with_e,countries)
+print(list(result))
+
+
+numbers=[1,2,3,4,5,6,7,8,9]
+result = reduce(
+    lambda x,y : x*y,
+    filter(
+    lambda x : x if x % 2 ==0 else False
+    ,numbers
+)
+)
+print(result)
+
+
+def is_string(name):
+    if type(name)==str:
+        return True
+    else:
+        False
+
+def get_string_lists(list_tbc):
+    result = filter(is_string,list_tbc)
+    print(list(result))
+
+list_or = [3,5,6,7,8,"Fred","fdjhg","gjhdgj"]
+get_string_lists(list_or)
+
+print(numbers)
+print(reduce((lambda x,y: x*y),numbers))
+
+print(f"{reduce((lambda x,y: x + ", " + y), countries[0:len(countries)-1])} and {countries[len(countries)-1]} are north Europian countries")
+
+stan_countries = filter((lambda x : x if "stan" in x else False), all_countries)
+print(list(stan_countries))
