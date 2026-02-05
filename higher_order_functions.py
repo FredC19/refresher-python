@@ -176,3 +176,22 @@ def add_two_nums(x, y):
 
 total = reduce(add_two_nums, numbers_str)
 print(total)    # 15
+
+#Exercises
+
+countries = ['Estonia', 'Finland', 'Sweden', 'Denmark', 'Norway', 'Iceland']
+names = ['Asabeneh', 'Lidiya', 'Ermias', 'Abraham']
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+#A map applies a function to a all the items in a given list
+#A filter applies a function that outputs a boolean to all the items in a given list,
+# and then if the ouptut of that function is True the item in the list stays.
+# A reduce filter takes a function that takes in two or more elements to output an element and then
+#applies it to all the list slowly to create the least elements
+
+#Higher order functions take functions in as parameters
+#Closure is when a nested function has access to the outer functions scope
+#Decorators are higher order functions that take functions as parameters
+
+for country in countries:
+    print(country)
