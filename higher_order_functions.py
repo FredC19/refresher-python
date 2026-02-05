@@ -1,5 +1,6 @@
 from functools import reduce
-from data import all_countries
+import string
+from data import all_countries, country_info
 
 def sum_numbers(nums):  # normal function
     return sum(nums)    # a sad function abusing the built-in sum function :<
@@ -266,3 +267,35 @@ print(f"{reduce((lambda x,y: x + ", " + y), countries[0:len(countries)-1])} and 
 
 stan_countries = filter((lambda x : x if "stan" in x else False), all_countries)
 print(list(stan_countries))
+stan_countries = filter((lambda x : x if "island" in x.lower() else False), all_countries)
+print(list(stan_countries))
+
+
+
+alphabet = list(string.ascii_lowercase)
+
+def countries_dict(the_list):
+    alphabet_dict = {letter: [] for letter in string.ascii_uppercase}
+    for country in all_countries:
+        alphabet_dict[country[0]].append(country)
+    return alphabet_dict
+
+print(countries_dict(all_countries))
+
+def get_first_10(list):
+    return list[:10]
+
+def get_last_10(list):
+    new_list=[]
+    for x in range(len(list)-10,len(list)):
+        new_list.append(list[x])
+    return new_list
+
+print(get_first_10(all_countries))
+print(get_last_10(all_countries))
+
+#more efficient way
+print(all_countries[-10:])
+
+countries_by_name = sorted(country_info , key=lambda c: c['name'])
+print(countries_by_name)
