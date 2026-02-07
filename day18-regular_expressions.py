@@ -129,3 +129,19 @@ matches = re.findall(regex_pattern, txt)
 print(matches)  # ['6,', '2019', '8', '2021']
 
 ''''''''
+
+paragraph = 'I love teaching. If you do not love teaching what else can you love. I love Python if you do not love something which can give you all the capabilities to develop an application what else can you love.'
+regex_search = r'[A-Za-z]+'
+pattern_matches = re.findall(regex_search,paragraph)
+print(pattern_matches)
+
+highest_count = 0
+highest_count_word = None 
+for word in set(pattern_matches):
+    regex_search = re.findall(word,paragraph)
+    count=len(regex_search)
+    if highest_count < count:
+        highest_count = count
+        highest_count_word = word
+
+print(highest_count , highest_count_word)
