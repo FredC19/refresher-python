@@ -145,3 +145,98 @@ for word in set(pattern_matches):
         highest_count_word = word
 
 print(highest_count , highest_count_word)
+
+#more efficient version
+
+paragraph = ('I love teaching. If you do not love teaching what else can you love. '
+             'I love Python if you do not love something which can give you all the '
+             'capabilities to develop an application what else can you love.')
+
+# Extract words
+pattern_matches = re.findall(r'[A-Za-z]+', paragraph.lower())
+
+# Count words manually
+counts = {}
+for word in pattern_matches:
+    if word in counts:
+        counts[word] += 1
+    else:
+        counts[word] = 1
+
+# Find the highest count
+highest_count_word = None
+highest_count = 0
+
+for word, count in counts.items():
+    if count > highest_count:
+        highest_count = count
+        highest_count_word = word
+
+print(highest_count, highest_count_word)
+
+sorted_points =  [-12, -4, -3, -1, -1, 0, 2, 4, 8]
+answer = sorted_points[-1] - sorted_points[0]
+print(answer)
+
+def is_valid_variable(name):
+    pattern = r'^[A-Za-z_][A-Za-z0-9_]*$'
+    return bool(re.match(pattern, name))
+
+print(is_valid_variable('first_name')) # True
+print(is_valid_variable('first-name') )# False
+print(is_valid_variable('1first_name')) # False
+print(is_valid_variable('firstname') )# True
+
+
+sentence = '''%I $am@% a %tea@cher%, &and& I lo%#ve %tea@ching%;. There $is nothing; &as& mo@re rewarding as educa@ting &and& @emp%o@wering peo@ple. ;I found tea@ching m%o@re interesting tha@n any other %jo@bs. %Do@es thi%s mo@tivate yo@u to be a tea@cher!?'''
+
+def clean_text(the_string):
+    return re.sub('[^A-Za-z0-9;. !?]', '', sentence)
+    
+print(clean_text(sentence))
+# I am a teacher and I love teaching There is nothing as more rewarding as educating and empowering people I found teaching more interesting than any other jobs Does this motivate you to be a teacher
+#print(most_frequent_words(cleaned_text)) # [(3, 'I'), (2, 'teaching'), (2, 'teacher')]
+
+
+pattern_matches = re.findall(r'[A-Za-z]+', sentence.lower())
+
+# Count words manually
+counts = {}
+for word in pattern_matches:
+    if word in counts:
+        counts[word] += 1
+    else:
+        counts[word] = 1
+
+# Find the highest count
+highest_count_word = None
+highest_count = 0
+
+for word, count in counts.items():
+    if count > highest_count:
+        highest_count = count
+        highest_count_word = word
+
+print(highest_count, highest_count_word)
+
+import re
+
+sentence = '''%I $am@% a %tea@cher%, &and& I lo%#ve %tea@ching%;. There $is nothing; &as& mo@re rewarding as educa@ting &and& @emp%o@wering peo@ple. ;I found tea@ching m%o@re interesting tha@n any other %jo@bs. %Do@es thi%s mo@tivate yo@u to be a tea@cher!?'''
+
+def clean_text(the_string):
+    # Fixed: use the_string parameter instead of sentence
+    return re.sub('[^A-Za-z0-9 .!?]', '', the_string)
+
+cleaned = clean_text(sentence)
+print(cleaned)
+# Output: I am a teacher and I love teaching. There is nothing as more rewarding as educating and empowering people. I found teaching more interesting than any other jobs. Does this motivate you to be a teacher
+
+# Extract all words and convert to lowercase
+pattern_matches = re.findall(r'[A-Za-z]+', cleaned.lower())
+counts = {}
+for word in pattern_matches:
+    counts[word] = counts.get(word, 0) + 1
+
+highest_count = max(counts.values())
+highest_count_word = max(counts, key=counts.get)
+print(highest_count, highest_count_word)
