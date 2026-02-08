@@ -219,24 +219,27 @@ for word, count in counts.items():
 
 print(highest_count, highest_count_word)
 
-import re
-
 sentence = '''%I $am@% a %tea@cher%, &and& I lo%#ve %tea@ching%;. There $is nothing; &as& mo@re rewarding as educa@ting &and& @emp%o@wering peo@ple. ;I found tea@ching m%o@re interesting tha@n any other %jo@bs. %Do@es thi%s mo@tivate yo@u to be a tea@cher!?'''
 
-def clean_text(the_string):
-    # Fixed: use the_string parameter instead of sentence
-    return re.sub('[^A-Za-z0-9 .!?]', '', the_string)
+def clean_text(sentence):
+    return re.sub("[^A-Za-z0-9 .!?;]","",sentence)
 
-cleaned = clean_text(sentence)
-print(cleaned)
-# Output: I am a teacher and I love teaching. There is nothing as more rewarding as educating and empowering people. I found teaching more interesting than any other jobs. Does this motivate you to be a teacher
+print(clean_text(sentence))
 
-# Extract all words and convert to lowercase
-pattern_matches = re.findall(r'[A-Za-z]+', cleaned.lower())
-counts = {}
-for word in pattern_matches:
-    counts[word] = counts.get(word, 0) + 1
+def most_frequent_words(paragraph):
+    word_list = re.findall(r'[A-Za-z]+',paragraph.lower())
+    counts = {}
+    for word in word_list:
+        counts[word] = counts.get(word,0) + 1
+    
+    highest_word = max(counts, key=counts.get)
+    highest_count = counts[highest_word]
+    
+    return highest_word, highest_count
 
-highest_count = max(counts.values())
-highest_count_word = max(counts, key=counts.get)
-print(highest_count, highest_count_word)
+
+
+    
+print(clean_text(sentence))
+cleaned_text = clean_text(sentence)
+print(most_frequent_words(cleaned_text)) # [(3, 'I'), (2, 'teaching'), (2, 'teacher')]
