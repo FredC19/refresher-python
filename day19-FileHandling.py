@@ -1,5 +1,24 @@
 import os
 import json
+BLACK = '\033[30m'
+RED = '\033[31m'
+GREEN = '\033[32m'
+YELLOW = '\033[33m' # orange on some systems
+BLUE = '\033[34m'
+MAGENTA = '\033[35m'
+CYAN = '\033[36m'
+LIGHT_GRAY = '\033[37m'
+DARK_GRAY = '\033[90m'
+BRIGHT_RED = '\033[91m'
+BRIGHT_GREEN = '\033[92m'
+BRIGHT_YELLOW = '\033[93m'
+BRIGHT_BLUE = '\033[94m'
+BRIGHT_MAGENTA = '\033[95m'
+BRIGHT_CYAN = '\033[96m'
+WHITE = '\033[97m'
+
+RESET = '\033[0m' # called to return to standard terminal text color
+
 # Syntax
 # mode(r, a, w, x, t,b)  could be to read, write, update
 
@@ -116,7 +135,24 @@ for f in range(len(file_name_list)):
     else:
         print(f"{file_from_list}: File does not exist")
 
+def most_popular_lang(filename,ranks):
+    language_list={}
+    with open(filename, 'r', encoding='utf-8') as f:
+        person1_json = f.read()
+        person1_dct = json.loads(person1_json)
+        for x in range(len(person1_dct)):
+            for y in person1_dct[x]['languages']:
+                if y in language_list:
+                    language_list[y]+=1
+                else:
+                    language_list[y]=1
 
+    lang_rank_list =[]
+    for x in range(ranks):
+        pop_lang = max(language_list, key=language_list.get)
+        lang_rank_list.append((pop_lang, language_list[pop_lang]))
+        language_list.pop(pop_lang)
+    return lang_rank_list
+        
 
-
-
+print(most_popular_lang('countries_data.json',10))
