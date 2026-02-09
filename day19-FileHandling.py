@@ -156,3 +156,16 @@ def most_popular_lang(filename,ranks):
         
 
 print(most_popular_lang('countries_data.json',10))
+
+
+def most_populated_countries(filename, ranks=10):
+    with open(filename, 'r', encoding='utf-8') as f:
+        countries = json.load(f)
+    
+    return [
+        {'country': c['name'], 'population': c['population']}
+        for c in sorted(countries, key=lambda x: x['population'], reverse=True)[:ranks]
+    ]
+
+for country in most_populated_countries('countries_data.json',3):
+    print(country)
