@@ -186,12 +186,46 @@ def email_list(filename):
             # print((colour_list[x])+line)
             # x+=1
             if line[0:4] == 'From':
-                print(line)
                 the_email = re.findall( r"(?=[^@\s]*@[^@\s]*)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}",line)
                 email_list.append(the_email)
 
     return email_list
 
-print(email_list('email_exchanges_big.txt'))
+#print(email_list('email_exchanges_big.txt'))
+
+def remove_filler(the_dict=dict):
+    filler_list=['the','and','of','to','is','in','our','all','for','a','have','this','it','your','with','not','you','what','but','us','has','as','that','every','on','be','or','by','while','â€”','-','their','from','back','are','they','who','was','can','those','who','its','than','been','at','because','when','too','no','cannot','so','will','let']
+    for word in filler_list:
+        if word in the_dict:
+            the_dict.pop(word)
+    return the_dict
+
+
+def find_most_common_words(filename,rank):
+    word_list = {}
+    with open(filename,'r') as file:
+        for line in file:
+            re.sub(".-"," ",line)
+            line = line.lower()
+            words_in_line = line.split()
+            for word in words_in_line:
+                if word in word_list:
+                    word_list[word]+=1
+                else:
+                    word_list[word]=1
+
+    word_list = remove_filler(word_list)
+    
+    asc = {key: value for key, value in sorted(word_list.items(), key=lambda item: item[1], reverse=True)[:rank]}
+    return asc
+
+
+list_length = 15
+print(find_most_common_words('donald_speech.txt',list_length),"\n")
+print(find_most_common_words('obama_speech.txt',list_length),"\n")
+print(find_most_common_words('melina_trump_speech.txt',list_length),"\n")
+print(find_most_common_words('michelle_obama_speech.txt',list_length),"\n")
+
+
 
 
