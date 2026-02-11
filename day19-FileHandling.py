@@ -220,12 +220,34 @@ def find_most_common_words(filename,rank):
     return asc
 
 
-list_length = 15
-print(find_most_common_words('donald_speech.txt',list_length),"\n")
-print(find_most_common_words('obama_speech.txt',list_length),"\n")
-print(find_most_common_words('melina_trump_speech.txt',list_length),"\n")
-print(find_most_common_words('michelle_obama_speech.txt',list_length),"\n")
+list_length = 200
+# print(find_most_common_words('donald_speech.txt',list_length),"\n")
+# print(find_most_common_words('obama_speech.txt',list_length),"\n")
+# print(find_most_common_words('melina_trump_speech.txt',list_length),"\n")
+# print(find_most_common_words('michelle_obama_speech.txt',list_length),"\n")
+michelle_dict = find_most_common_words('michelle_obama_speech.txt',list_length)
+melina_dict = find_most_common_words('melina_trump_speech.txt',list_length)
 
+def compare_two_transcripts(dict1=dict,dict2=dict):
+    # print(dict1,"\n")
+    # print(dict2,"\n")
+    common_words = 0
+    total_words = 0
+    for value in dict1.values():
+        total_words+=value
+    for key in dict1:
+        word_value = dict1[key]
+        if key in dict2:
+            word_value2 = dict2[key]
+            if word_value2 > word_value:
+                common_words+= word_value
+            else:
+                common_words+= word_value2
+    
+    return common_words/total_words
 
+#compare each word if one says it more you take the lower one add it to the numerator, total words is the denominator
 
+print("\n",(michelle_dict,melina_dict))
+print("\n",compare_two_transcripts(michelle_dict,melina_dict))
 
