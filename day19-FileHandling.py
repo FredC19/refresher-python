@@ -17,6 +17,9 @@ BRIGHT_MAGENTA = '\033[95m'
 BRIGHT_CYAN = '\033[96m'
 WHITE = '\033[97m'
 
+colour_list = [BLACK,RED,GREEN,YELLOW,BLUE,MAGENTA,CYAN,LIGHT_GRAY,DARK_GRAY,BRIGHT_RED,BRIGHT_GREEN,BRIGHT_YELLOW,BRIGHT_BLUE,BRIGHT_MAGENTA,BRIGHT_CYAN,WHITE]
+colour_list = [BLACK,DARK_GRAY,LIGHT_GRAY,WHITE]
+
 RESET = '\033[0m' # called to return to standard terminal text color
 
 # Syntax
@@ -167,5 +170,28 @@ def most_populated_countries(filename, ranks=10):
         for c in sorted(countries, key=lambda x: x['population'], reverse=True)[:ranks]
     ]
 
-for country in most_populated_countries('countries_data.json',3):
+for country in most_populated_countries('countries_data.json',5):
     print(country)
+
+
+import re
+def email_list(filename):
+    x = 0
+    email_list=[]
+    with open(filename,'r') as file:
+        # raw_file = file.readlines()
+        for line in file:
+            # if (x+1)>len(colour_list):
+            #     x=0
+            # print((colour_list[x])+line)
+            # x+=1
+            if line[0:4] == 'From':
+                print(line)
+                the_email = re.findall( r"(?=[^@\s]*@[^@\s]*)[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}",line)
+                email_list.append(the_email)
+
+    return email_list
+
+print(email_list('email_exchanges_big.txt'))
+
+
