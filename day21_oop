@@ -23,11 +23,15 @@ print(p1.skills)
 print(p2.skills)
 
 class Student(Person):
-    pass
-
+    def __init__ (self, firstname='Asabeneh', lastname='Yetayeh',age=250, country='Finland', city='Helsinki', gender='male'):
+        self.gender = gender
+        super().__init__(firstname, lastname,age, country, city)
+    def person_info(self):
+        gender = 'He' if self.gender =='male' else 'She'
+        return f'{self.firstname} {self.lastname} is {self.age} years old. {gender} lives in {self.city}, {self.country}.'
 
 s1 = Student('Eyob', 'Yetayeh', 30, 'Finland', 'Helsinki')
-s2 = Student('Lidiya', 'Teklemariam', 28, 'Finland', 'Espoo')
+s2 = Student('Lidiya', 'Teklemariam', 28, 'Finland', 'Espoo','female')
 print(s1.person_info())
 s1.add_skill('JavaScript')
 s1.add_skill('React')
@@ -39,3 +43,111 @@ s2.add_skill('Organizing')
 s2.add_skill('Marketing')
 s2.add_skill('Digital Marketing')
 print(s2.skills)
+
+
+class Statistics(list):
+    def __init__(self,data):
+        self.data = data
+    
+    def min(self):
+        if self.data[0]:
+            lowest_min = self.data[0]
+            for x in self.data:
+                if x <= lowest_min:
+                    lowest_min = x
+            return lowest_min
+        else:
+            return None
+    
+    def max(self):
+        if self.data[0]:
+            highest_val = self.data[0]
+            for x in self.data:
+                if x >= highest_val:
+                    highest_val = x
+            return highest_val
+        else:
+            return None
+
+class Averages(Statistics):
+    def mean(self):
+        total=0
+        for x in self.data:
+            total+=x
+        return total/len(self.data)
+    def median(self):
+        self.data.sort()
+        middle = len(self.data)/2
+        middle = round(middle)
+        return self.data[middle]
+    def freq_table(self):
+        freq_dict = {}
+        for num in self.data:
+            if num in freq_dict:
+                freq_dict[num]+=1
+            else:
+                freq_dict[num]=1
+        total=0
+        for key in freq_dict:
+            total+=freq_dict[key]
+            print(f"{key} appeared {freq_dict[key]} times. CF: {total}")
+
+
+    #super().__init__(data)
+        
+ages = Statistics([31, 26, 34, 37, 27, 26, 32, 32, 26, 27, 27, 24, 32, 33, 27, 25, 26, 38, 37, 31, 34, 24, 33, 29, 26])
+print(ages.max())
+print(ages.min())
+proper_ages = Averages([31, 26, 34, 37, 27, 26, 32, 32, 26, 27, 27, 24, 32, 33, 27, 25, 26, 38, 37, 31, 34, 24, 33, 29, 26])
+print(proper_ages.mean())
+print(proper_ages.median())
+proper_ages.freq_table()
+
+# Create a class called PersonAccount. It has firstname, lastname, incomes, expenses properties and it has total_income, total_expense, account_info, add_income, add_expense and account_balance methods. Incomes is a set of incomes and its description. The same goes for expenses.
+
+class PersonAccount(Person):
+    def __init__(self, firstname=None, lastname=None,incomes=None,expense_properties=None):
+        self.incomes = {}
+        self.expense_properties = {}
+        super().__init__(firstname,lastname)
+
+    def total_income(self):
+        total = 0
+        for x in self.incomes:
+            total+=self.incomes[x]
+        return total
+
+    def total_expense(self):
+        total = 0
+        for x in self.expense_properties:
+            total+=self.expense_properties[x]
+        return total
+
+    def account_info(self):
+        return self.firstname, self.lastname, self.incomes, self.expense_properties
+
+    def add_income(self,desc,new_income):
+        if desc in self.incomes:
+            self.incomes[desc] += new_income
+        else:
+            self.incomes[desc] = new_income
+
+    
+    def add_expense(self, desc,new_expense):
+        if desc in self.expense_properties:
+            self.expense_properties[desc] += new_expense
+        else:
+            self.expense_properties[desc] = new_expense
+
+    def account_balance(self):
+        return self.total_income() - self.total_expense()
+
+
+person1 = PersonAccount("Alice", "Johnson")
+person1.add_income("Salary", 3000)
+person1.add_income("Freelance", 800)
+person1.add_expense("Rent", 1200)
+person1.add_expense("Groceries", 300)
+
+print(person1.account_info())
+
