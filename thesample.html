@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BeautifulSoup Practice Page</title>
+</head>
+<body>
+    <h1 id="main-title">My Practice Page</h1>
+
+    <div class="intro">
+        <p>Welcome to this <strong>BeautifulSoup</strong> practice page.</p>
+        <p class="tagline">You can use this file to learn HTML parsing.</p>
+    </div>
+
+    <div class="articles">
+        <h2>Articles</h2>
+        <div class="article" data-id="1">
+            <h3 class="title">First Article</h3>
+            <p class="author">By Alice</p>
+            <p class="content">This is the first article content.</p>
+            <a href="https://example.com/article1" class="read-more">Read more</a>
+        </div>
+
+        <div class="article featured" data-id="2">
+            <h3 class="title">Second Article</h3>
+            <p class="author">By Bob</p>
+            <p class="content">This is the second article content.</p>
+            <a href="https://example.com/article2" class="read-more">Read more</a>
+        </div>
+
+        <div class="article" data-id="3">
+            <h3 class="title">Third Article</h3>
+            <p class="author">By Charlie</p>
+            <p class="content">This is the third article content.</p>
+            <a href="https://example.com/article3" class="read-more">Read more</a>
+        </div>
+    </div>
+
+    <ul id="nav">
+        <li><a href="#main-title">Home</a></li>
+        <li><a href="#articles">Articles</a></li>
+        <li><a href="#footer">Footer</a></li>
+    </ul>
+
+    <table id="user-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>alice123</td>
+                <td>admin</td>
+                <td>true</td>
+            </tr>
+            <tr>
+                <td>bob456</td>
+                <td>editor</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>charlie789</td>
+                <td>viewer</td>
+                <td>true</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="footer">
+        <p>Contact: <a href="mailto:test@example.com">test@example.com</a></p>
+        <p class="note">Generated for BeautifulSoup practice.</p>
+    </div>
+</body>
+</html>
